@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/Texturizes-React/static/css/main.dc4d6ff2.css",
+    "main.js": "/Texturizes-React/static/js/main.437e9912.js",
+    "static/js/787.1937f22b.chunk.js": "/Texturizes-React/static/js/787.1937f22b.chunk.js",
+    "index.html": "/Texturizes-React/index.html",
+    "main.dc4d6ff2.css.map": "/Texturizes-React/static/css/main.dc4d6ff2.css.map",
+    "main.437e9912.js.map": "/Texturizes-React/static/js/main.437e9912.js.map",
+    "787.1937f22b.chunk.js.map": "/Texturizes-React/static/js/787.1937f22b.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.dc4d6ff2.css",
+    "static/js/main.437e9912.js"
+  ]
+}
