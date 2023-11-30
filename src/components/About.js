@@ -1,28 +1,10 @@
-import React, { useState } from "react";
+import React from "react";
 
-export default function About() {
-  const [mystyle, setMyStyle] = useState({
-    color: "black",
-    backgroundColor: "white",
+export default function About(props) {
+  let mystyle = props.changeback({
+    color: props.mode === "dark" ? "white" : "black",
+    backgroundColor: props.mode === "dark" ? "black" : "white",
   });
-
-  const [btntext, setBtnText] = useState("Enable Dark Mode");
-
-  const toggelestyle = () => {
-    if (mystyle.backgroundColor === "white") {
-      setMyStyle({
-        color: "white",
-        backgroundColor: "black",
-      });
-      setBtnText("Enable Light Mode");
-    } else {
-      setMyStyle({
-        color: "black",
-        backgroundColor: "white",
-      });
-      setBtnText("Enable Dark Mode");
-    }
-  };
 
   return (
     <>
@@ -41,7 +23,7 @@ export default function About() {
                 aria-controls="collapseOne"
                 style={mystyle}
               >
-                Accordion Item #1
+                <strong> Accordion Item #1</strong>
               </button>
             </h2>
             <div
@@ -73,7 +55,7 @@ export default function About() {
                 aria-controls="collapseTwo"
                 style={mystyle}
               >
-                Accordion Item #2
+                <strong> Accordion Item #2</strong>
               </button>
             </h2>
             <div
@@ -105,7 +87,7 @@ export default function About() {
                 aria-controls="collapseThree"
                 style={mystyle}
               >
-                Accordion Item #3
+                <strong> Accordion Item #3</strong>
               </button>
             </h2>
             <div
@@ -127,15 +109,6 @@ export default function About() {
             </div>
           </div>
         </div>
-      </div>
-      <div className="container">
-        <button
-          type="button"
-          onClick={toggelestyle}
-          className="btn btn-success my-3"
-        >
-          {btntext}
-        </button>
       </div>
     </>
   );

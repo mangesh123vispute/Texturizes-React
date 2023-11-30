@@ -1,20 +1,7 @@
 import React, { useState } from "react";
 
 export default function TextForm(props) {
-  const changeback = (object) => {
-    if (props.defaultbackground) {
-      console.log(object);
-      return object;
-    } else {
-      const newobj = {
-        backgroundColor: props.theme,
-        color: "white",
-      };
-      return newobj;
-    }
-  };
   const handleUpClick = () => {
-    // console.log("Uppercase was clicked: " +  text);
     let newText = text.toUpperCase();
     setText(newText);
     props.alert("Uppercase was clicked", "success");
@@ -27,7 +14,7 @@ export default function TextForm(props) {
   };
   const handleOnChange = (event) => {
     setText(event.target.value);
-    if (event.target.id == "myBox") {
+    if (event.target.id === "myBox") {
       return;
     }
     props.alert("On change", "success");
@@ -39,14 +26,14 @@ export default function TextForm(props) {
     }
     const text = document.getElementById("myBox").value;
     const array = text.split(" ");
-    console.log(array);
+
     var count = 0;
     for (var i = 0; i < array.length; i++) {
-      if (word == array[i]) {
+      if (word === array[i]) {
         count++;
       }
     }
-    if (count == 0) {
+    if (count === 0) {
       alert(
         "the word " +
           word.toLowerCase() +
@@ -67,9 +54,8 @@ export default function TextForm(props) {
   };
 
   const copy = () => {
-    let text = document.getElementById("myBox");
-    text.select();
-    navigator.clipboard.writeText(text.value);
+    navigator.clipboard.writeText(text);
+
     props.alert("Copied to clipboard", "success");
   };
   const clear = () => {
@@ -82,8 +68,10 @@ export default function TextForm(props) {
   return (
     <>
       <div
-        className="container"
-        style={changeback({ color: props.mode === "dark" ? "white" : "black" })}
+        className="container "
+        style={props.changeback({
+          color: props.mode === "dark" ? "white" : "black",
+        })}
       >
         <h1>{props.heading}</h1>
         <div className="my-3">
@@ -93,39 +81,72 @@ export default function TextForm(props) {
             onChange={handleOnChange}
             id="myBox"
             rows="8"
-            style={changeback({
+            style={props.changeback({
               backgroundColor: props.mode === "dark" ? "grey" : "white",
               color: props.mode === "dark" ? "white" : "black",
             })}
           ></textarea>
         </div>
-        <button className="btn btn-primary mx-1" onClick={handleUpClick}>
+        <button
+          className="btn btn-primary mx-1 my-1"
+          onClick={handleUpClick}
+          disabled={text.length === 0}
+        >
           Convert to Uppercase
         </button>
-        <button className="btn btn-primary mx-1" onClick={handlelowerClick}>
+        <button
+          className="btn btn-primary mx-1 my-1"
+          onClick={handlelowerClick}
+          disabled={text.length === 0}
+        >
           Convert to Lowercase
         </button>
-        <button className="btn btn-primary mx-1" onClick={checkfreq}>
+        <button
+          className="btn btn-primary mx-1 my-1"
+          onClick={checkfreq}
+          disabled={text.length === 0}
+        >
           CheckFrequencyOfWords
         </button>
 
-        <button className="btn btn-primary mx-1" onClick={copy}>
+        <button
+          className="btn btn-primary mx-1 my-1"
+          onClick={copy}
+          disabled={text.length === 0}
+        >
           Copy.
         </button>
 
-        <button className="btn btn-primary mx-1" onClick={clear}>
+        <button
+          className="btn btn-primary mx-1 my-1"
+          onClick={clear}
+          disabled={text.length === 0}
+        >
           clear
         </button>
       </div>
       <div
         className="container my-3"
-        style={changeback({ color: props.mode === "dark" ? "white" : "black" })}
+        style={props.changeback({
+          color: props.mode === "dark" ? "white" : "black",
+        })}
       >
         <h2>Your text summary</h2>
         <p>
-          {text.split(" ").length - 1} words and {text.length} characters
+          {
+            text.split(/\s+/).filter((element) => {
+              return element.length !== 0;
+            }).length
+          }
+          words and {text.length} characters
         </p>
-        <p>{0.008 * text.split(" ").length} Minutes read</p>
+        <p>
+          {0.008 *
+            text.split(/\s+/).filter((element) => {
+              return element.length !== 0;
+            }).length}
+          Minutes read
+        </p>
 
         <h2>Preview</h2>
         <p>

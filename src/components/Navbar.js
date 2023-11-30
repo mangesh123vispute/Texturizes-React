@@ -1,18 +1,15 @@
-import React, { useState } from "react";
+import React from "react";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
+
 export default function Navbar(props) {
-  const changeBackground = (e) => {
-    props.setTheme(e.target.value);
-    props.setDefaultbackground(false);
-  };
   return (
     <nav
       className="navbar navbar-expand-lg  bg-body-tertiary"
       data-bs-theme={props.mode}
     >
       <div className="container-fluid">
-        <Link to="/" className="navbar-brand">
+        <Link className="navbar-brand" to="/">
           Textutils
         </Link>
 
@@ -30,12 +27,12 @@ export default function Navbar(props) {
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
           <ul className="navbar-nav me-auto mb-2 mb-lg-0">
             <li className="nav-item">
-              <Link to="/" className="nav-link active" aria-current="page">
+              <Link className="nav-link active" aria-current="page" to="/">
                 Home
               </Link>
             </li>
             <li className="nav-item">
-              <Link to="/about" className="nav-link active">
+              <Link className="nav-link" to="/about">
                 {props.about}
               </Link>
             </li>
@@ -49,7 +46,7 @@ export default function Navbar(props) {
             className="form-control form-control-color"
             id="exampleColorInput"
             title="Choose your color"
-            onChange={changeBackground}
+            onChange={props.changeBackground}
           />
 
           <div
